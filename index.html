@@ -1,0 +1,339 @@
+<pre>
+# # linear Search
+
+# def linearSearch(list,value):
+#     for i in range(0,len(list)):
+#         if list[i] == value:
+#             return i
+#     return -1
+
+
+
+# l1 = [1,2,3,4,5,6]
+# a= linearSearch(l1,6)
+# print(a)
+
+
+
+
+
+
+# # linar Search by taking list as input
+
+# def linearSearch(list,value):
+#     for i in range(0,len(list)):
+#         if list[i] == value:
+#             return i
+#     return -1
+
+
+
+# l1 = []
+# n = int(input('enter no. of elements'))
+# for i in range(0,n):
+#     items = int(input('enter element'))
+#     l1.append(items)
+# value = int(input('enter the element you want to search'))
+
+# a= linearSearch(l1,value)
+# print(a)
+
+
+
+#################################################################################################################################################################################################
+# #Binary Search
+
+# def binarySearch(list,value):
+#     lb = 0
+#     ub = len(list)-1
+   
+#     while lb<=ub:
+#         mid = int((lb+ub)/2)
+#         if list[mid] == value:
+#             return mid
+#         elif list[mid]< value:
+#             lb = mid +1
+#         else:
+#             ub = mid -1
+#     return -1   
+    
+# list = [1,2,3,4,5]
+
+# a =binarySearch(list,5)
+# print(a)
+
+
+
+
+
+
+#################################################################################################################################################################################################
+## Bubble Sort
+
+# def bubbleSort(list):
+#     for i in range(len(list)-1,0,-1):
+#         for j in range(i):
+#             if list[j]>list[j+1]:
+#                  list[j],list[j+1] =list[j+1],list[j]
+#     return list
+
+
+
+
+
+# list = [5,4,3,2,9]
+# print(bubbleSort(list))
+
+
+# # # list = [5,4,3,2,1]
+# # # for i in range(len(list),0,-1):
+# # #     print(i)
+
+#################################################################################################################################################################################################
+# Insertion Sort
+# def insertion_sort(arr):
+#     for i in range(1,len(arr)):
+#         j = i
+#         while arr[j-1]>arr[j]   and j>0:
+#             arr[j-1],arr[j] = arr[j],arr[j-1]
+#             j = j-1
+#     return arr
+
+
+
+# arr = [5,4,9,2,5,7]
+# print(insertion_sort(arr))
+
+
+
+
+#################################################################################################################################################################################################
+
+
+# Quick Sort 
+
+# def quick_sort(sequence):
+#     length = len(sequence)
+#     if length <= 1:
+#         return sequence
+#     else :
+#         pivot = sequence.pop()
+#     items_greater =[]
+#     items_lower = []
+#     for i in sequence:
+#         if i > pivot:
+#             items_greater.append(i)
+#         else :
+#             items_lower.append(i)
+#     return quick_sort(items_lower) + [pivot] + quick_sort(items_greater)
+
+# a = [5,8,6,2,7,1]
+# print(quick_sort(a))
+
+
+#################################################################################################################################################################################################
+# singly linked list
+
+
+class LinkedListNode:
+    def __init__(self, value, nextNode=None):
+        self.value = value
+        self.nextNode = nextNode
+
+nodel = LinkedListNode("3")
+node2 = LinkedListNode("7")
+node3 = LinkedListNode("10")
+
+nodel.nextNode = node2
+node2.nextNode = node3
+
+currentNode = nodel
+while True:
+    print(currentNode.value, ">", end=" ")
+    if currentNode.nextNode is None:
+        print("None")
+        break
+    currentNode = currentNode.nextNode
+    
+#################################################################################################################################################################################################
+# Merge Sort
+
+def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    
+    mid = len(arr) // 2
+    left_half = arr[:mid]
+    right_half = arr[mid:]
+    
+    left_half = merge_sort(left_half)
+    right_half = merge_sort(right_half)
+    
+    return merge(left_half, right_half)
+
+def merge(left, right):
+    merged = []
+    left_index = 0
+    right_index = 0
+    
+    while left_index < len(left) and right_index < len(right):
+        if left[left_index] < right[right_index]:
+            merged.append(left[left_index])
+            left_index += 1
+        else:
+            merged.append(right[right_index])
+            right_index += 1
+    
+    while left_index < len(left):
+        merged.append(left[left_index])
+        left_index += 1
+    
+    while right_index < len(right):
+        merged.append(right[right_index])
+        right_index += 1
+    
+    return merged
+
+# Example usage:
+arr = [5, 2, 8, 3, 1]
+sorted_arr = merge_sort(arr)
+print(sorted_arr)
+
+
+#################################################################################################################################################################################################
+
+
+# doubly linked list
+
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.prev = None
+        self.next = None
+
+class DoublyLinkedList:
+    def __init__(self):
+        self.head = None
+        self.tail = None
+
+    def append(self, value):
+        new_node = Node(value)
+        if self.head is None:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            new_node.prev = self.tail
+            self.tail.next = new_node
+            self.tail = new_node
+
+    def prepend(self, value):
+        new_node = Node(value)
+        if self.head is None:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            new_node.next = self.head
+            self.head.prev = new_node
+            self.head = new_node
+
+    def print_list(self):
+        current_node = self.head
+        while current_node:
+            print(current_node.value, end=" ")
+            current_node = current_node.next
+        print()
+
+    def print_reverse_list(self):
+        current_node = self.tail
+        while current_node:
+            print(current_node.value, end=" ")
+            current_node = current_node.prev
+        print()
+
+# Example usage:
+dll = DoublyLinkedList()
+dll.append(1)
+dll.append(2)
+dll.append(3)
+dll.prepend(0)
+dll.print_list()  # Output: 0 1 2 3
+dll.print_reverse_list()  # Output: 3 2 1 0
+
+
+
+#################################################################################################################################################################################################
+
+
+# circular queue
+
+
+class CircularQueue:
+    def __init__(self, k):
+        self.k = k
+        self.queue = [None] * k
+        self.head = -1
+        self.tail = -1
+
+    def enqueue(self, value):
+        if self.is_full():
+            print("Queue is full. Unable to enqueue.")
+        elif self.is_empty():
+            self.head = 0
+            self.tail = 0
+            self.queue[self.tail] = value
+        else:
+            self.tail = (self.tail + 1) % self.k
+            self.queue[self.tail] = value
+
+    def dequeue(self):
+        if self.is_empty():
+            print("Queue is empty. Unable to dequeue.")
+        elif self.head == self.tail:
+            value = self.queue[self.head]
+            self.queue[self.head] = None
+            self.head = -1
+            self.tail = -1
+            return value
+        else:
+            value = self.queue[self.head]
+            self.queue[self.head] = None
+            self.head = (self.head + 1) % self.k
+            return value
+
+    def is_empty(self):
+        return self.head == -1 and self.tail == -1
+
+    def is_full(self):
+        return (self.tail + 1) % self.k == self.head
+
+    def print_queue(self):
+        if self.is_empty():
+            print("Queue is empty.")
+        else:
+            current_index = self.head
+            while current_index != self.tail:
+                print(self.queue[current_index], end=" ")
+                current_index = (current_index + 1) % self.k
+            print(self.queue[self.tail])
+
+
+# Example usage:
+cq = CircularQueue(5)
+cq.enqueue(1)
+cq.enqueue(2)
+cq.enqueue(3)
+cq.print_queue()  # Output: 1 2 3
+cq.dequeue()
+cq.print_queue()  # Output: 2 3
+
+#################################################################################################################################################################################################
+
+
+
+
+
+      https://shorturl.at/cgiRS
+
+      https://shorturl.at/bjmnX
+      
+</pre>
